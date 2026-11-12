@@ -1,0 +1,78 @@
+
+Game Concept Document: LCM Hero Adventure
+
+
+1. Game Overview
+
+• Genre: 2D Educational JRPG
+• Target Audience: Elementary school children learning basic pre-algebra / number theory.
+• Core Game Loop: Explore Map \(\rightarrow \) Encounter Monster \(\rightarrow \) Solve LCM Problem \(\rightarrow \) Defeat Monster \(\rightarrow \) Earn Points/Gold \(\rightarrow \) Advance toward the Princess's Castle.
+
+2. Core Battle Mechanics (LCM Shield System)
+
+Combat is turn-based. Instead of traditional physical attacks, math calculations act as the hero's skills and spells.
+• Monster Visuals: Every monster displays a Mathematical Shield above its head, containing two or three numbers (e.g., [4, 6]).
+• Player Actions: The combat UI provides multiple multiple-choice spell cards (e.g., 10, 12, 24, 36).
+• Win Condition (Attack): Selecting the correct Least Common Multiple (LCM) (e.g., 12) triggers a hero attack animation, breaks the shield, and instantly defeats the monster.
+• Lose Condition (Penalty): Selecting an incorrect number (e.g., 24 is a common multiple but not the least) results in a shield deflection animation. The monster counters, reducing the hero's Health Points (HP).
+
+3. Reward & Progression Systems
+
+Motivation is driven through a dual-reward structure combining instant gratification with long-term narrative goals.
+
+💎 Instant Gratification (Points & Gold)
+
+• Star Points: Awarded for every correct answer. Boosts leaderboard rankings.
+• Gold Coins: Dropped by defeated monsters. Used in the village shop.
+• Equipment Shop: Players buy cosmetic gear and stat upgrades:
+	• The Multiplier Sword (Changes weapon visuals).
+	• The Prime Number Shield (Increases maximum HP to survive more mistakes).
+
+👸 Ultimate Narrative Goal (The Princess Rescue Progress)
+
+• UI Progress Bar: A permanent progress bar sits at the top of the exploration screen.
+	• Left side: Hero icon ⚔️
+	• Right side: Captured Princess icon 👑
+• Visual Movement: Winning a battle advances the hero icon closer to the castle.
+• Stage-End Reward: Completing a full level triggers a cutscene where the Princess sends a magical item down from her tower to unlock new character tiers.
+
+4. Level & Progression Design
+
+Difficulty ramps up dynamically to guide children through distinct arithmetic patterns.
+
+Level Zone	Monster Shield Type	Core Mathematical Concept	Narrative Milestone
+1. Whispering Woods	Prime Pair
+(e.g., [3, 5])	Coprime numbers where the LCM is simply the product (\(3 \times 5 = 15\)).	Hero leaves the home village; defeats simple slimes.
+2. Shadow Caves	Overlapping Factors
+(e.g., [4, 6])	Numbers sharing common factors; encourages list-matching or short division.	Explores the deep caverns; rescues trapped villagers.
+3. Misty Barrens	Contained Multiples
+(e.g., [3, 6])	The larger number is already a multiple of the smaller number (\(\text{LCM} = 6\)).	Earns the legendary Holy Sword; reaches the castle gates.
+4. Demon Castle	Three-Number Rush
+(e.g., [3, 4, 6])	Compounding LCM steps across three distinct values (\(\text{LCM} = 12\)).	Final boss battle against the Demon King; saves the princess.
+
+
+5. UI/UX Suggestions for Educational Value
+
+
+🧚 The "Short Division" Tutorial Fairy
+
+• Trigger: If the player selects a wrong answer 2 times in a row, a friendly tutor fairy pops up.
+• Action: The game pauses and overlays an animated step-by-step resolution of the current problem using the Short Division (短除法) method or listing multiples side-by-side.
+• Impact: Prevents frustration and turns failure into a direct learning milestone.
+
+🤖 Adaptive Edge AI Integration (Offline Performance Model)
+
+• Response Monitoring: An internal script tracks response latency per problem type.
+• Targeted Spawning: If data reveals a child struggles with overlapping factor questions (e.g., taking \(>15\) seconds to solve [6, 8]), the game increases the spawn rate of monsters carrying similar shield sets until proficiency improves.
+
+6. Technical Stack Recommendation (For AI Agent Implementation)
+
+• Language: Python 3.x
+• Framework: pygame (For 2D sprite rendering, map tile loading, and basic state management).
+• Architecture: Use a clean Model-View-Controller (MVC) split to decouple the arithmetic generator logic from the screen drawing state.
+text
+[Arithmetic State Engine] <--> [Main Pygame Loop] <--> [Render Layer / UI]
+           |
+   (Generates LCM Data)
+
+

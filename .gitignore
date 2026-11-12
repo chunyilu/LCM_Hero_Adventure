@@ -1,0 +1,16 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache & build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDE settings
+.idea/
+.vscode/
+*.swp
+.DS_Store

@@ -1,0 +1,22 @@
+name: Run Game Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t lcm-hero-tests .
+
+      - name: Run test_game.py in Docker
+        run: docker run --rm lcm-hero-tests
